@@ -23,9 +23,8 @@ This React application is designed to help users build and preview a structured 
 - **Node.js** (v14+)
 - **npm** (Node Package Manager)
 
-### Installation
 
-1. **Clone the repository:**
+**Clone the repository:**
    ```bash
    git clone https://github.com/rahmat131/CV-Builder.git
    cd cv-generator
