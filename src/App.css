@@ -31,7 +31,7 @@ nav li{
   align-items: center;
   justify-content: space-between;
   width: 50%;
-  border: 2px yellow solid;
+  /* border: 2px yellow solid; */
 }
 .navR ul{
   width: 50%;
