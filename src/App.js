@@ -7,7 +7,7 @@ import Footer from './Components/Footer'
 function App() {
   return (
     <div >
-      <Header/>
+      {/* <Header/> */}
       <Form/>
       <Footer/>
     </div>
