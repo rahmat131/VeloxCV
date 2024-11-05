@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import 'react-phone-number-input/style.css'
 import EXP from "./FormComp/Experience"
 import PerInf from "./FormComp/PersonalInfo"
 import EDU from "./FormComp/Education"
