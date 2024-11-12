@@ -4,6 +4,9 @@ import PerInf from "./FormComp/PersonalInfo"
 import EDU from "./FormComp/Education"
 import Skills from "./FormComp/Skills"
 import generatePDF from './FormComp/generatePDF';
+import AddSection from "./FormComp/AddSection";
+// import SectionForm from './FormComp/SectionForm';
+// import AddSectionModal from './FormComp/AddSectionModal';
 
 
 function Form() {
@@ -16,17 +19,50 @@ function Form() {
     country: '',
     experiences: [{ company: '', designation: '', city: '', country: '', from: '', till: '', isPresent: false, description: [''] }],
     educations: [{ institute: '', city: '', country: '', from: '', till: '', isPresent: false, description: [''] }],
+    sections: [{ title: '', heading: '',subheading: '', city: '', country: '', from: '', till: '', isPresent: false, description: [''] }],
     technicalSkills: '',
     languages: ''
   });
 
   const [experienceCount, setExperienceCount] = useState(1);
   const [educationCount, setEducationCount] = useState(1);
+  const [sectionCount, setSectionCount] = useState(1);
   const [isPreview, setIsPreview] = useState(false);
   const [pdfUrl, setPdfUrl] = useState(''); // State to hold PDF URL for preview
   const [formSubmitted, setFormSubmitted] = useState(false); // State to track form submission
+  // const [additionalSections, setAdditionalSections] = useState([]);
+  // const [showModal, setShowModal] = useState(false);
 
+  // const handleSectionUpdate = (sectionId, itemIndex, field, value) => {
+  //   const updatedSections = additionalSections.map((section) => {
+  //     if (section.id === sectionId) {
+  //       const updatedItems = [...section.items];
+  //       updatedItems[itemIndex] = { ...updatedItems[itemIndex], [field]: value };
+  //       return { ...section, items: updatedItems };
+  //     }
+  //     return section;
+  //   });
+  //   setAdditionalSections(updatedSections);
+  // };
 
+  // const addNewSection = ({ sectionName, fields }) => {
+  //   setAdditionalSections([
+  //     ...additionalSections,
+  //     { id: Date.now(), sectionName, fields, items: [{ description: '', from: '', till: '', isPresent: false }] }
+  //   ]);
+  // };
+
+  // const addItemToSection = (sectionId) => {
+  //   const updatedSections = additionalSections.map((section) =>
+  //     section.id === sectionId
+  //       ? { ...section, items: [...section.items, { description: '', from: '', till: '', isPresent: false }] }
+  //       : section
+  //   );
+  //   setAdditionalSections(updatedSections);
+  // };
+  // const handleAddSection = (section) => {
+  //   setAdditionalSections((prevSections) => [...prevSections, { ...section, items: [{ description: '' }] }]);
+  // };
   
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,8 +71,7 @@ function Form() {
     // console.log(formData);
     // alert('Form submitted successfully!');
   };
-
-
+  
   const handlePreview = () => {
     const pdfBlob = generatePDF(formData);
     const url = URL.createObjectURL(pdfBlob);
@@ -60,21 +95,30 @@ function Form() {
     const newExperiences = formData.experiences.map((exp, i) => i === index ? { ...exp, [name]: value } : exp);
     setFormData({ ...formData, experiences: newExperiences });
   };
-
+  
   const handleEducationChange = (index, e) => {
     const { name, value } = e.target;
     const newEducations = formData.educations.map((edu, i) => i === index ? { ...edu, [name]: value } : edu);
     setFormData({ ...formData, educations: newEducations });
   };
-
+  
+  const handleSectionChange = (index, e) => {
+    const { name, value } = e.target;
+    const newSections = formData.sections.map((sec, i) => i === index ? { ...sec, [name]: value } : sec);
+    setFormData({ ...formData, sections: newSections });
+  };
   const handlePresentCheckboxChange = (index, section, e) => {
     const checked = e.target.checked;
     if (section === 'experience') {
       const newExperiences = formData.experiences.map((exp, i) => i === index ? { ...exp, isPresent: checked, till: checked ? 'Present' : '' } : exp);
       setFormData({ ...formData, experiences: newExperiences });
-    } else {
+    } else if (section === 'education'){
       const newEducations = formData.educations.map((edu, i) => i === index ? { ...edu, isPresent: checked, till: checked ? 'Present' : '' } : edu);
       setFormData({ ...formData, educations: newEducations });
+    }
+     else {
+      const newSections = formData.sections.map((sec, i) => i === index ? { ...sec, isPresent: checked, till: checked ? 'Present' : '' } : sec);
+      setFormData({ ...formData, sections: newSections });
     }
   };
 
@@ -83,9 +127,12 @@ function Form() {
     if (section === 'experience') {
       const newExperiences = formData.experiences.map((exp, i) => i === index ? { ...exp, description: exp.description.map((desc, j) => j === descIndex ? value : desc) } : exp);
       setFormData({ ...formData, experiences: newExperiences });
-    } else {
+    } else if (section === 'education') {
       const newEducations = formData.educations.map((edu, i) => i === index ? { ...edu, description: edu.description.map((desc, j) => j === descIndex ? value : desc) } : edu);
       setFormData({ ...formData, educations: newEducations });
+    } else {
+      const newSections = formData.sections.map((sec, i) => i === index ? { ...sec, description: sec.description.map((desc, j) => j === descIndex ? value : desc) } : sec);
+      setFormData({ ...formData, sections: newSections });
     }
   };
 
@@ -93,9 +140,12 @@ function Form() {
     if (section === 'experience') {
       const newExperiences = formData.experiences.map((exp, i) => i === index ? { ...exp, description: [...exp.description, ''] } : exp);
       setFormData({ ...formData, experiences: newExperiences });
-    } else {
+    } else if (section === 'education') {
       const newEducations = formData.educations.map((edu, i) => i === index ? { ...edu, description: [...edu.description, ''] } : edu);
       setFormData({ ...formData, educations: newEducations });
+    } else {
+      const newSections = formData.sections.map((sec, i) => i === index ? { ...sec, description: [...sec.description, ''] } : sec);
+      setFormData({ ...formData, sections: newSections });
     }
   };
 
@@ -111,6 +161,12 @@ function Form() {
     setEducationCount(count);
     const newEducations = Array.from({ length: count }, (_, i) => formData.educations[i] || { institute: '', city: '', country: '', from: '', till: '', isPresent: false, description: [''] });
     setFormData({ ...formData, educations: newEducations });
+  };
+  const handleSectionCountChange = (e) => {
+    const count = parseInt(e.target.value, 10);
+    setSectionCount(count);
+    const newSections = Array.from({ length: count }, (_, i) => formData.sections[i] || { title: '', subheading: '', city: '', country: '', from: '', till: '', isPresent: false, description: [''] });
+    setFormData({ ...formData, sections: newSections });
   };
 
 
@@ -153,6 +209,17 @@ function Form() {
             addDescriptionField={addDescriptionField}
           />
 
+         {/* Add Section */}
+         <AddSection
+         sections={formData.sections}
+         sectionCount = {sectionCount}
+         handleSectionCountChange = {handleSectionCountChange}
+         handleSectionChange={handleSectionChange}
+         handlePresentCheckboxChange={handlePresentCheckboxChange}
+         handleDescriptionChange={handleDescriptionChange}
+         addDescriptionField={addDescriptionField}
+         />
+       {/* -------------- */}
 
             {/* Skills Section */}
             <Skills
@@ -160,7 +227,18 @@ function Form() {
             technicalSkills = {formData.technicalSkills}
             languages = {formData.languages}
             />
+
+
+
      <div>
+
+     {/* {showModal && (
+        <AddSectionModal
+          addSection={addNewSection}
+          onClose={() => setShowModal(false)}
+        />
+      )} */}
+
 {isPreview && (
             <div>
               <iframe

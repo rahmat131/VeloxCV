@@ -28,6 +28,7 @@ function getMonthYear(date) {
     pdf.setFont('helvetica','normal');
     pdf.setFontSize(12);
     pdf.text(`${formData.city} | ${formData.country} | ${formData.email} | ${formData.phone}`, pageWidth / 2, y, { align: 'center' });
+    //Experience
     y += 10;
     pdf.setFontSize(15);
     pdf.setFont('helvetica','bold');
@@ -53,12 +54,12 @@ function getMonthYear(date) {
     pdf.setFont('helvetica','normal');
     y += 6;
     exp.description.forEach((desc) => {
-          let wrappedText = pdf.splitTextToSize(`  • ${desc}`, usableWidth);
-          pdf.text(wrappedText, margin, y);
-          y += wrappedText.length * 6;
+      let wrappedText = pdf.splitTextToSize(`  • ${desc}`, usableWidth);
+      pdf.text(wrappedText, margin, y);
+      y += wrappedText.length * 6;
     });
-
   });
+  //---------------------------
   // Education
   y += 4
   pdf.setFontSize(15);
@@ -86,19 +87,70 @@ function getMonthYear(date) {
           pdf.text(wrappedText, margin, y);
           y += wrappedText.length * 5;
     });
+    // y += 7;
+    //--------------------------------------
+    //Section
+    //---------Title-----------------
+ 
+
+   
+    //------------------------
+    if (formData.sections && formData.sections.length > 0) {
+    formData.sections.forEach((sec, index) => {
+       //---------Title-----------------
+    y += 4;
+    pdf.setFontSize(15);
+    pdf.setFont('helvetica','bold');
+    pdf.text(`${sec.title}`, margin, y);
+    // pdf.text("HELLOOOO", margin, y);
+    pdf.setFont('helvetica','normal');
+    y += 2
+    pdf.line(margin, y, pageWidth - margin, y);
+    y += 6;
+    //------------------------
+        // y += 2;
+    pdf.setFontSize(12);
+    pdf.setFont('helvetica','bold');
+
+    if(sec.city!='' || sec.country!= ''){
+      pdf.text(`${sec.heading} - ${sec.city}, ${sec.country}`, margin, y);
+    }else{
+      pdf.text(`${sec.heading}`, margin, y);
+    }
+
+    pdf.setFont('helvetica','italic');
+    const fdate = getMonthYear(sec.from);
+    const tdate = sec.till=='Present' ? 'Present' : getMonthYear(sec.till);
+    const moff = alignRight(fdate,tdate, pageWidth, margin)
+    y += 6;
+    pdf.text(`${sec.subheading}`, margin, y);
+    pdf.setFontSize(10);
+    pdf.text(`${fdate} - ${sec.isPresent ?  'Present' : tdate}`,  moff, y);
+    pdf.setFontSize(12);
+    pdf.setFont('helvetica','normal');
+    y += 6;
+    sec.description.forEach((desc) => {
+          let wrappedText = pdf.splitTextToSize(`  • ${desc}`, usableWidth);
+          pdf.text(wrappedText, margin, y);
+          y += wrappedText.length * 6;
+    });
+
+  });
+    }
+    // Skills
+    y += 4;
+    pdf.setFontSize(15);
+    pdf.setFont('helvetica','bold');
+    pdf.text('SKILLS', margin, y);
+    pdf.setFont('helvetica','normal');
+    y += 2
+    pdf.line(margin, y, pageWidth - margin, y);
     y += 7;
+    pdf.setFontSize(12);
+    pdf.text(`Languages: ${formData.languages}`, margin, y);
   });
 
-  // Skills
-  pdf.setFontSize(15);
-  pdf.setFont('helvetica','bold');
-  pdf.text('SKILLS', margin, y);
-  pdf.setFont('helvetica','normal');
-  y += 2
-  pdf.line(margin, y, pageWidth - margin, y);
-  y += 7;
-  pdf.setFontSize(12);
-  pdf.text(`Languages: ${formData.languages}`, margin, y);
+
 //   pdf.save('CV.pdf'); // Download the PDF
 return pdf.output('blob'); // Return the Blob for further use
   };
