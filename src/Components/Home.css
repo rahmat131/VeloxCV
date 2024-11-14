@@ -16,20 +16,53 @@
   
   /* Hero Section */
   .hero {
+    /* background: #4a90e2;
+    color: #fff;
+    padding: 80px 20px; */
     background: #4a90e2;
     color: #fff;
     padding: 80px 20px;
+    position: relative;
   }
   
   .hero h1 {
+    /* font-size: 3em;
+    margin-bottom: 20px; */
     font-size: 3em;
     margin-bottom: 20px;
+    overflow: hidden;
+    border-right: 0.1em solid #fff;
+    white-space: nowrap;
+    width: 0; /* Initially, the width is 0 for the typing effect */
+    animation: typing 2s steps(30) forwards, blink-caret 0.75s  infinite;
   }
   
   .hero p {
     font-size: 1.2em;
     margin-bottom: 30px;
+    overflow: hidden;
+    border-right: 0.1em solid #fff;
+    white-space: nowrap;
+    width: 0; /* Initially, the width is 0 for the typing effect */
+    animation: typing 3s steps(30) 2s forwards, blink-caret 0.75s  infinite;
   }
+
+  /* Keyframes for Typing Animation */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Keyframes for the Blinking Caret */
+@keyframes blink-caret {
+  50% {
+    border-color: transparent;
+  }
+}
   
   .cta-button {
     background: #ff6347;
