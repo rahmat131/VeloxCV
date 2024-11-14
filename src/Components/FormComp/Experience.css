@@ -1,0 +1,25 @@
+/* Experience Component Styles */
+.Box {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .Box input[type="text"], .Box input[type="date"], .Box input[type="number"] {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .Box button {
+    background-color: #007BFF;
+    color: white;
+    border-radius: 4px;
+    padding: 5px 15px;
+    cursor: pointer;
+  }
+  
+  .Box button:hover {
+    background-color: #0056b3;
+  }
+  

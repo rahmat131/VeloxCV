@@ -20,6 +20,7 @@ function getMonthYear(date) {
     const usableWidth = pageWidth - margin * 2;
     let y = 20;
 
+    pdf.setLineWidth(0.6)
     pdf.setFont('helvetica','normal');
     pdf.setFontSize(25);
     pdf.setFont('helvetica','bold');
@@ -27,15 +28,63 @@ function getMonthYear(date) {
     y += 7;
     pdf.setFont('helvetica','normal');
     pdf.setFontSize(12);
-    pdf.text(`${formData.city} | ${formData.country} | ${formData.email} | ${formData.phone}`, pageWidth / 2, y, { align: 'center' });
+    pdf.text(`${formData.city} | ${formData.country} | ${formData.phone}`, pageWidth / 2, y, { align: 'center' });
+    y += 5;
+    // pdf.textWithLink(`${formData.email}`,pageWidth / 2, y, { align: 'center' }, { url: `mailto:${formData.email}` }); // Make the email clickable
+    //---Email
+    const email = formData.email;
+  const emailWidth = pdf.getTextWidth(email); // Get the width of the email text
+  const centerX = (pageWidth - emailWidth) / 2; // Calculate the center position
+  pdf.textWithLink(email, centerX, y, { url: `mailto:${email}` }); // Make the email clickable
+  // y += 10; // Move down after the email link
+    //------
+    // Links
+    // if (formData.links && formData.links.length > 0) {
+      
+    //   formData.links.forEach((link, index) => {
+        
+    //     if (link.trim()) {
+          
+    //       pdf.textWithLink(link, 20, y, { url: link });
+    //     }
+    //   });
+    // }
+    if (formData.links && formData.links.length > 0) {
+      pdf.setFontSize(12);
+      pdf.setFont('helvetica','normal');
+      // pdf.text('Links:', margin, y);  // Section Title for Links
+      y += 5;
+      formData.links.forEach((link, index) => {
+        const linkY = y + (index * 5); // Space between each link
+        if (link.trim()) {
+          // Calculate the center position for each link
+          const linkWidth = pdf.getTextWidth(link); // Get the width of the link text
+          const centerX = (pdf.internal.pageSize.width - linkWidth) / 2; // Center the link on the page
+  
+          // Use textWithLink to make the link clickable
+          pdf.textWithLink(link, centerX, linkY, { url: link });
+        }
+      });
+      y += formData.links.length * 4; // Adjust Y position after links
+    }
+    ///----
+   
+    // pdf.text(`${formData.city} | ${formData.country} | ${formData.email} | ${formData.phone}`, pageWidth / 2, y, { align: 'center' });
     //Experience
     y += 10;
     pdf.setFontSize(15);
+    pdf.setTextColor('#156082')
     pdf.setFont('helvetica','bold');
     pdf.text('EXPERIENCE', margin, y);
     pdf.setFont('helvetica','normal');
+    pdf.setTextColor('Black')
     y += 2
+    // pdf.setLineWidth(0.5);
+    pdf.setDrawColor('#156082')
     pdf.line(margin, y, pageWidth - margin, y);
+    // pdf.line(margin, y, pageWidth - margin, y);
+    pdf.setTextColor('Black')
+    
     y += 6;
     formData.experiences.forEach((exp, index) => {
         y += 2;
@@ -64,7 +113,9 @@ function getMonthYear(date) {
   y += 4
   pdf.setFontSize(15);
   pdf.setFont('helvetica','bold');
+  pdf.setTextColor('#156082')
   pdf.text('EDUCATION', margin, y);
+  pdf.setTextColor('Black')
   pdf.setFont('helvetica','normal');
   y += 2
   pdf.line(margin, y, pageWidth - margin, y);
@@ -89,7 +140,7 @@ function getMonthYear(date) {
     });
     // y += 7;
     //--------------------------------------
-    //Section
+    // Add Section
     //---------Title-----------------
  
 
@@ -101,7 +152,10 @@ function getMonthYear(date) {
     y += 4;
     pdf.setFontSize(15);
     pdf.setFont('helvetica','bold');
-    pdf.text(`${sec.title}`, margin, y);
+    pdf.setTextColor('#156082')
+    const txt = sec.title;
+    pdf.text(txt.toUpperCase(), margin, y);
+    pdf.setTextColor('Black')
     // pdf.text("HELLOOOO", margin, y);
     pdf.setFont('helvetica','normal');
     y += 2
@@ -113,23 +167,33 @@ function getMonthYear(date) {
     pdf.setFont('helvetica','bold');
 
     if(sec.city!='' || sec.country!= ''){
+      pdf.setFont('helvetica','bold');
       pdf.text(`${sec.heading} - ${sec.city}, ${sec.country}`, margin, y);
+      y += 6;
     }else{
+      pdf.setFont('helvetica','bold');
       pdf.text(`${sec.heading}`, margin, y);
+      y += 6;
     }
-
+//-----Dates From - Till
+if(sec.from && sec.till){
     pdf.setFont('helvetica','italic');
     const fdate = getMonthYear(sec.from);
     const tdate = sec.till=='Present' ? 'Present' : getMonthYear(sec.till);
     const moff = alignRight(fdate,tdate, pageWidth, margin)
-    y += 6;
+    // y += 6;
+    pdf.setFont('helvetica','bold');
     pdf.text(`${sec.subheading}`, margin, y);
     pdf.setFontSize(10);
+    pdf.setFont('helvetica','italic');
     pdf.text(`${fdate} - ${sec.isPresent ?  'Present' : tdate}`,  moff, y);
     pdf.setFontSize(12);
     pdf.setFont('helvetica','normal');
     y += 6;
+}
+//------
     sec.description.forEach((desc) => {
+      pdf.setFont('helvetica','normal');
           let wrappedText = pdf.splitTextToSize(`  • ${desc}`, usableWidth);
           pdf.text(wrappedText, margin, y);
           y += wrappedText.length * 6;
@@ -141,10 +205,15 @@ function getMonthYear(date) {
     y += 4;
     pdf.setFontSize(15);
     pdf.setFont('helvetica','bold');
+    pdf.setTextColor('#156082')
     pdf.text('SKILLS', margin, y);
+    pdf.setTextColor('Black')
     pdf.setFont('helvetica','normal');
     y += 2
     pdf.line(margin, y, pageWidth - margin, y);
+    y += 7;
+    pdf.setFontSize(12);
+    pdf.text(`Technical: ${formData.technicalSkills}`, margin, y);
     y += 7;
     pdf.setFontSize(12);
     pdf.text(`Languages: ${formData.languages}`, margin, y);

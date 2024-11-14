@@ -1,0 +1,46 @@
+/* Education Component Styles */
+.Box {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .Box input[type="text"], .Box input[type="date"], .Box input[type="number"] {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .Box .CB {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    /* padding: ; */
+    /* border:  red solid; */
+    /* justify-content: center; */
+  }
+  .Box .CB label{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 8px;
+    margin: 0;
+    /* border: #007BFF solid; */
+  }
+  
+  .Box button {
+    background-color: #007BFF;
+    color: white;
+    border-radius: 4px;
+    padding: 5px 15px;
+    cursor: pointer;
+  }
+  
+  .Box button:hover {
+    background-color: #0056b3;
+  }
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+}

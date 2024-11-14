@@ -1,4 +1,5 @@
 import React from 'react'
+import './AddSection.css'
 
 function AddSection({
   sections,
@@ -18,26 +19,26 @@ return (
     {sections.map((section, index) => (
     <div key = {index}>
 
-      <label >Section - {index + 1}</label>
+      <label id='labelHeading'>Section - {index + 1}</label>
                <div><input type="text" name="title" placeholder="Title"value={section.title} onChange={(e) => handleSectionChange(index, e)}required /></div>
                <div><input type="text" name="heading" placeholder="Heading"value={section.heading} onChange={(e) => handleSectionChange(index, e)} /></div>
                <div><input type="text" name="subheading" placeholder="Sub Heading"value={section.subheading} onChange={(e) => handleSectionChange(index, e)} /></div>
                <div><input type="text" name="city" placeholder="City"value={section.city} onChange={(e) => handleSectionChange(index, e)} /></div>
                <div><input type="text" name="country" placeholder="Country"value={section.country} onChange={(e) => handleSectionChange(index, e)} /></div>
               <div>
-                <label>From: </label>
+                <label id='labelHeading'>From: </label>
                 <input type="date" name="from" placeholder="From"value={section.from} onChange={(e) => handleSectionChange(index, e)}  />
               </div>
 
               {/* Till Date or Present */}
               <div >
-                <label>Till: </label>
+                <label id='labelHeading'>Till: </label>
                 {!section.isPresent && (
                   <input type="date" name="till" value={section.till} onChange={(e) => handleSectionChange(index, e)} 
                   // required={!section.isPresent}
                   />)}
                <div className='CB'>
-                <label>Present:</label>
+                <label id='labelHeading'>Present:</label>
                   <input type="checkbox" placeholder="Present"checked={section.isPresent} onChange={(e) => handlePresentCheckboxChange(index, 'section', e)}/>
                </div>
                

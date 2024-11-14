@@ -1,4 +1,5 @@
 import React from 'react'
+import './Education.css'
 
 function Education({
     educations,
@@ -16,21 +17,21 @@ function Education({
     <div><input type="number" name="educationCount" min="1" value={educationCount} onChange={handleEducationCountChange} required/></div>
     {educations.map((education, index) => (
 <div key = {index}>
-        <label >Education - {index + 1}</label>
+        <label id='labelHeading'>Education - {index + 1}</label>
                 <div><input type="text" name="institute" placeholder="Institute Name"value={education.institute} onChange={(e) => handleEducationChange(index, e)} required/></div>
                 <div><input type="text" name="city" placeholder="City"value={education.city} onChange={(e) => handleEducationChange(index, e)} required/></div>
                 <div><input type="text" name="country" placeholder="Country" value={education.country} onChange={(e) => handleEducationChange(index, e)} required/></div>
                 <div>
-                  <label>From: </label>
+                  <label id='labelHeading'>From: </label>
                   <input type="date" name="from" value={education.from} onChange={(e) => handleEducationChange(index, e)} required/>
                 </div>
 
                 {/* Till Date or Present for Education */}
-                <div>
-                  <label>Till: </label>
+                <div >
+                  <label id='labelHeading'>Till: </label>
                   {!education.isPresent && (<input type="date" name="till" value={education.till} onChange={(e) => handleEducationChange(index, e)} required={!education.isPresent}/>)}
                   <div className='CB'>
-                  <label>Present:</label>
+                  <label id='labelHeading'>Present:</label>
                     <input type="checkbox" checked={education.isPresent} onChange={(e) => handlePresentCheckboxChange(index, 'education', e)}/>
                   </div>
                   </div>

@@ -1,0 +1,100 @@
+/* Basic reset for margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Overall header styling */
+  header {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    font-family: Arial, sans-serif;
+    /* margin-bottom: 25px; */
+  }
+  
+  /* Styling for the navigation */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Left side (Logo) */
+  .navL li {
+    list-style-type: none;
+  }
+  
+  .navL .nav-link {
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .navL .nav-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Middle section (Main navigation) */
+  .navM ul {
+    list-style-type: none;
+    display: flex;
+  }
+  
+  .navM ul li {
+    margin: 0 15px;
+  }
+  
+  .navM .nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: normal;
+  }
+  
+  .navM .nav-link:hover {
+    color: #f4a261;
+    text-decoration: underline;
+  }
+  
+  /* Right section (CTA link - Get Your CV) */
+  .navR .GYCV .nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 8px 15px;
+    background-color: #e76f51;
+    border-radius: 4px;
+  }
+  
+  .navR .GYCV .nav-link:hover {
+    background-color: #f4a261;
+    text-decoration: underline;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    /* Stack the navigation items on smaller screens */
+    .navM ul {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .navM ul li {
+      margin: 10px 0;
+    }
+  
+    /* Make the logo text larger on mobile */
+    .navL .nav-link {
+      font-size: 28px;
+    }
+  
+    /* Adjust the Get Your CV link on mobile */
+    .navR .GYCV .nav-link {
+      font-size: 16px;
+      padding: 6px 12px;
+    }
+  }
+  

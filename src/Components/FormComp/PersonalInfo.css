@@ -1,0 +1,63 @@
+/* PersonalInfo Component Styles */
+/* .Box {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  input[type="text"], input[type="email"], input[type="phone"] {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+  }
+  
+  input[type="text"]:focus, input[type="email"]:focus, input[type="phone"]:focus {
+    border-color: #4CAF50;
+    background-color: #fff;
+  }
+  #labelHeading {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 501;
+    color: #555;
+  } */
+
+  /* PersonalInfo Component Styles */
+.Box {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+input[type="text"], input[type="email"], input[type="phone"], input[type="url"] {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 8px;
+  width: 100%;
+  margin-bottom: 8px;
+  border-radius: 4px;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="phone"]:focus, input[type="url"]:focus {
+  border-color: #4CAF50;
+  background-color: #fff;
+}
+
+#labelHeading {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 501;
+  color: #555;
+}
+
+.add-link-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 8px 12px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.add-link-button:hover {
+  background-color: #45a049;
+}

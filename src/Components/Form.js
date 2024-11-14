@@ -21,7 +21,8 @@ function Form() {
     educations: [{ institute: '', city: '', country: '', from: '', till: '', isPresent: false, description: [''] }],
     sections: [{ title: '', heading: '',subheading: '', city: '', country: '', from: '', till: '', isPresent: false, description: [''] }],
     technicalSkills: '',
-    languages: ''
+    languages: '',
+    links: [''] // New state for links
   });
 
   const [experienceCount, setExperienceCount] = useState(1);
@@ -63,7 +64,17 @@ function Form() {
   // const handleAddSection = (section) => {
   //   setAdditionalSections((prevSections) => [...prevSections, { ...section, items: [{ description: '' }] }]);
   // };
-  
+  // Add a new link field
+const addLink = () => {
+  setFormData(prevData => ({ ...prevData, links: [...prevData.links, ''] }));
+};
+
+// Handle changes to link fields
+const handleLinkChange = (index, value) => {
+  const updatedLinks = formData.links.map((link, i) => (i === index ? value : link));
+  setFormData({ ...formData, links: updatedLinks });
+};
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setFormSubmitted(true); // Set form submitted to true
@@ -181,7 +192,12 @@ function Form() {
 
 
             {/* Personal Info Section */}
-            <PerInf formData={formData} handleChange={handleChange} />
+            <PerInf formData={formData} 
+            handleChange={handleChange} 
+            links={formData.links}          // Pass links
+            addLink={addLink}                // Pass addLink function
+            handleLinkChange={handleLinkChange} // Pass handleLinkChange function
+             />
 
 
 
@@ -230,22 +246,14 @@ function Form() {
 
 
 
-     <div>
-
-     {/* {showModal && (
-        <AddSectionModal
-          addSection={addNewSection}
-          onClose={() => setShowModal(false)}
-        />
-      )} */}
-
+<div >
 {isPreview && (
             <div>
               <iframe
                 title="CV Preview"
                 src={pdfUrl}
                 width="100%"
-                height="600px"
+                height="1500x"
                 style={{ border: 'none' }}
               />
               <div className='btn' style={{ marginTop: '10px' }}>
