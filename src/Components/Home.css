@@ -44,7 +44,7 @@
     border-right: 0.1em solid #fff;
     white-space: nowrap;
     width: 0; /* Initially, the width is 0 for the typing effect */
-    animation: typing 3s steps(30) 2s forwards, blink-caret 0.75s  infinite;
+    animation: typing 3s steps(30) 2s forwards , blink-caret 0.75s  infinite;
   }
 
   /* Keyframes for Typing Animation */
@@ -54,6 +54,7 @@
   }
   to {
     width: 100%;
+    border-right: 0.1em solid #4a90e2;
   }
 }
 
