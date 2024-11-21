@@ -93,7 +93,7 @@ function getMonthYear(date) {
     pdf.text(`${exp.company} - ${exp.city}, ${exp.country}`, margin, y);
     pdf.setFont('helvetica','italic');
     const fdate = getMonthYear(exp.from);
-    const tdate = exp.till==='Present' ? 'Present' : getMonthYear(exp.till);
+    const tdate = exp.till=='Present' ? 'Present' : getMonthYear(exp.till);
     const moff = alignRight(fdate,tdate, pageWidth, margin)
     y += 6;
     pdf.text(`${exp.designation}`, margin, y);
@@ -126,7 +126,7 @@ function getMonthYear(date) {
     pdf.text(`${edu.institute}, ${edu.city}, ${edu.country}`, margin, y);
     pdf.setFont('helvetica','italic');
     const fdate = getMonthYear(edu.from);
-    const tdate = edu.till==='Present' ? 'Present' : getMonthYear(edu.till);
+    const tdate = edu.till=='Present' ? 'Present' : getMonthYear(edu.till);
     const moff = alignRight(fdate,tdate, pageWidth, margin)
     pdf.setFontSize(10);
     pdf.text(`${fdate} - ${edu.isPresent ?  'Present' : tdate}`,  moff, y);
@@ -166,7 +166,7 @@ function getMonthYear(date) {
     pdf.setFontSize(12);
     pdf.setFont('helvetica','bold');
 
-    if(sec.city!=='' || sec.country!== ''){
+    if(sec.city!='' || sec.country!= ''){
       pdf.setFont('helvetica','bold');
       pdf.text(`${sec.heading} - ${sec.city}, ${sec.country}`, margin, y);
       y += 6;
@@ -179,7 +179,7 @@ function getMonthYear(date) {
 if(sec.from && sec.till){
     pdf.setFont('helvetica','italic');
     const fdate = getMonthYear(sec.from);
-    const tdate = sec.till==='Present' ? 'Present' : getMonthYear(sec.till);
+    const tdate = sec.till=='Present' ? 'Present' : getMonthYear(sec.till);
     const moff = alignRight(fdate,tdate, pageWidth, margin)
     // y += 6;
     pdf.setFont('helvetica','bold');
