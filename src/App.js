@@ -6,7 +6,7 @@ import Home from './Components/Home'
 import Contact  from './Components/Contact';
 // import Contact  from './Components/Contact2';
 import About from './Components/About';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
