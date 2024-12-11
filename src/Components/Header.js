@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; // Corrected the import
 import './Header.css'
+import logo from "./logo/cvlogo.png";
 
 function Header() {  // Capitalize the component name
   return (
@@ -8,7 +9,9 @@ function Header() {  // Capitalize the component name
       <header>
         <nav>
           <div className='navL'>
-            <li><Link to="/"className='nav-link'>Logo!</Link></li>
+            <Link to="/"className='nav-link'>
+            <img src={logo} alt="My Image" />
+            </Link>
           </div>
           <div className='navM'>
             <ul>

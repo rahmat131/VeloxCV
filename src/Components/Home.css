@@ -19,7 +19,7 @@
     /* background: #4a90e2;
     color: #fff;
     padding: 80px 20px; */
-    background: #4a90e2;
+    background: #003f00;
     color: #fff;
     padding: 80px 20px;
     position: relative;
@@ -54,7 +54,7 @@
   }
   to {
     width: 100%;
-    border-right: 0.1em solid #4a90e2;
+    border-right: 0.1em solid #003f00;
   }
 }
 
@@ -82,12 +82,13 @@
   /* Features Section */
   .features {
     padding: 60px 20px;
-    background: #f8f8f8;
+    background: rgb(0, 32, 19);
   }
   
   .features h2 {
     font-size: 2em;
     margin-bottom: 20px;
+    color: white;
   }
   
   .feature-list {
@@ -128,7 +129,7 @@
   }
   
   /* Footer Section */
-  .footer {
+  /* .footer {
     padding: 20px;
     background: #333;
     color: #fff;
@@ -144,5 +145,5 @@
   .footer a {
     color: #fff;
     text-decoration: none;
-  }
+  } */
   
