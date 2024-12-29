@@ -19,10 +19,14 @@
     /* background: #4a90e2;
     color: #fff;
     padding: 80px 20px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background: #003f00;
     color: #fff;
     padding: 80px 20px;
-    position: relative;
+    /* position: relative; */
   }
   
   .hero h1 {
@@ -127,7 +131,21 @@
     color: #555;
     margin-bottom: 10px;
   }
+
+  @media (max-width: 768px) {
+ 
+    .hero h1 {
+      /* font-size: 3em;
+      margin-bottom: 20px; */
+      font-size: 1.9em;
+      
+    }
+    
+    .hero p{
+      font-size: 1em;
+    }
   
+  }
   /* Footer Section */
   /* .footer {
     padding: 20px;

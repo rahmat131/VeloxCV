@@ -20,7 +20,7 @@ return (
     <div key = {index}>
 
       <label id='labelHeading'>Section - {index + 1}</label>
-               <div><input type="text" name="title" placeholder="Title"value={section.title} onChange={(e) => handleSectionChange(index, e)}required /></div>
+               <div><input type="text" name="title" placeholder="Title"value={section.title} onChange={(e) => handleSectionChange(index, e)} /></div>
                <div><input type="text" name="heading" placeholder="Heading"value={section.heading} onChange={(e) => handleSectionChange(index, e)} /></div>
                <div><input type="text" name="subheading" placeholder="Sub Heading"value={section.subheading} onChange={(e) => handleSectionChange(index, e)} /></div>
                <div><input type="text" name="city" placeholder="City"value={section.city} onChange={(e) => handleSectionChange(index, e)} /></div>
